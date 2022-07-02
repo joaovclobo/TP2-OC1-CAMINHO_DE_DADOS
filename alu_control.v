@@ -11,19 +11,21 @@ module aluControle(
                 end
             end
             2'b01: begin
-                
+                if(funct3 == 3'000) begin
+                    aluOut = 4'b0110;
+                end
             end
             2'10: begin
-                if (funct3 == 3'b000 & funct7 == 7'b0000000) begin
+                if (funct3 == 3'b000 && funct7 == 7'b0000000) begin
                     aluOut = 4'b0010;  // add
                 end
-                if (funct3 == 3'b000 & funct7 == 7'b0100000) begin
+                if (funct3 == 3'b000 && funct7 == 7'b0100000) begin
                     aluOut = 4'b0110;  // sub
                 end
-                if (funct3 == 3'b111 & funct7 == 7'b0000000) begin
-                    aluOut = 4'b000;   // and
+                if (funct3 == 3'b111 && funct7 == 7'b0000000) begin
+                    aluOut = 4'b0000;   // and
                 end
-                if (funct3 == 3'b110 & funct7 == 7'b0000000) begin
+                if (funct3 == 3'b110 && funct7 == 7'b0000000) begin
                     aluOut = 4'b0001;  // or
                 end
             end
