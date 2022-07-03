@@ -6,7 +6,7 @@
 // `include "dataMemory.v"
 // `include "immGen.v"
 // `include "instructionDivision.v"
-// `include "muxbranch.v"
+`include "muxbranch.v"
 // `include "muxmem.v"
 // `include "muxreg.v"
 `include "pc.v"
@@ -26,6 +26,29 @@ module dataPath (
     wire [2:0] funct3;
     wire [1:0]aluOp;
     wire branch, memRead, memtoReg, memWrite, aluSrc, regwrite, aluZero;
+    
+    add4 add4_1(
+        .clk(clk),
+        .reset(reset),
+        .pcOut(pcOut),
+        .add4Out(add4Out)
+    );
+
+    addSum addSum_1(
+        .clk(clk),
+        .reset(reset),
+        .pcOut(pcOut),
+        .immediate(extImmediate),
+        .addSumOut(addSumOut)
+    );
+
+    muxbranch muxbranch_1(
+        .add4Out(add4Out),
+        .addSumOut(addSumOut),
+        .branch(branch),
+        .aluZero(aluZero),
+        .muxBranchOutp(pcIn)
+    );
 
     pc pc_1(
         .clk(clk),
@@ -96,14 +119,6 @@ module dataPath (
     //     .writeData(writeData)
     // );
 
-    // muxbranch muxbranch_1(
-    //     .add4Out(add4Out),
-    //     .addSumOut(addSumOut),
-    //     .branch(branch),
-    //     .aluZero(aluZero),
-    //     .muxBranchOutp(pcIn)
-    // );
-
     // alu alu_1(
     //     .readData1(readData1),
     //     .saidaMusReg(saidaMuxreg),
@@ -120,15 +135,6 @@ module dataPath (
     //     .memRead(memRead)
     // );
 
-    add4 add4_1(
-        .pcOut(pcOut),
-        .add4Out(add4Out)
-    );
 
-    addSum addSum_1(
-        .pcOut(pcOut),
-        .immediate(extImmediate),
-        .addSumOut(addSumOut)
-    );
 
 endmodule

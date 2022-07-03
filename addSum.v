@@ -1,9 +1,22 @@
 module addSum(
+    input clk,
+    input reset,
     input wire [31:0] pcOut,
     input wire [31:0] immediate,
     output reg [31:0] addSumOut
 );
-    always @* begin
-        addSumOut <= pcOut + immediate;
+    wire [31:0] shiftLImm;
+
+    assign shiftLImm = (immediate <<< 2);
+
+    always @(*) begin
+
+        if (reset) begin
+            addSumOut <= 32'b0;
+        end
+        else begin
+            addSumOut <= pcOut + shiftLImm;   
+        end
     end
+
 endmodule

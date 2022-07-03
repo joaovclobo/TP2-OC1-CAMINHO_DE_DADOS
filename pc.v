@@ -12,5 +12,6 @@ module pc(
         else begin
             pcOut <= pcIn;
         end
+        // $display("PCIn: %b, PCOut: %b", pcIn, pcOut);
     end
 endmodule
