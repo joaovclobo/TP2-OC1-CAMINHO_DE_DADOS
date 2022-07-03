@@ -9,9 +9,9 @@ module controle (
     output reg regWrite
     );
 
-    always @* begin
-        case(instruction)
-            7'b0110011: begin // Tipo-R
+    always @(instruction) begin
+        case (instruction)
+             7'b0110011: begin // Tipo-R
                 branch = 0;
                 memRead = 0;
                 memtoReg = 0;
@@ -24,7 +24,7 @@ module controle (
                 branch = 0;
                 memRead = 1;
                 memtoReg = 1;
-                MemWrite = 0;
+                memWrite = 0;
                 aluSrc = 1;
                 regWrite = 1;
                 aluOp = 2'b00; // lw e sw
@@ -33,7 +33,7 @@ module controle (
                 branch = 0;
                 memRead = 0;
                 memtoReg = 0;
-                MemWrite = 1;
+                memWrite = 1;
                 aluSrc = 1;
                 regWrite = 0;
                 aluOp = 2'b00; // lw e sw
@@ -42,11 +42,11 @@ module controle (
                 branch = 1;
                 memRead = 0;
                 memtoReg = 0;
-                MemWrite = 0;
+                memWrite = 0;
                 aluSrc = 0;
                 regWrite = 0;
                 aluOp = 2'b01; // lw e sw
             end
-        
+        endcase
     end
 endmodule

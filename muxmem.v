@@ -1,10 +1,10 @@
 module muxMem (
-    input wire memtoReg;
+    input wire memtoReg,
     input wire [31:0] readData,
     input wire [31:0] aluResult,
     output reg [31:0] writeData
 ); 
-    always @* begin
+    always @(*) begin
         if(memtoReg == 1) begin
             writeData = readData;
         end

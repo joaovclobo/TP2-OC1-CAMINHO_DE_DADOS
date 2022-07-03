@@ -1,14 +1,14 @@
 `include "add4.v"
 `include "addSum.v"
-// `include "alu_control.v"
-// `include "alu.v"
-// `include "control.v"
+`include "alu_control.v"
+`include "alu.v"
+`include "control.v"
 // `include "dataMemory.v"
 // `include "immGen.v"
 `include "instructionDivision.v"
 `include "muxbranch.v"
-// `include "muxmem.v"
-// `include "muxreg.v"
+`include "muxmem.v"
+`include "muxreg.v"
 `include "pc.v"
 `include "readInstructions.v"
 // `include "registers.v"
@@ -82,50 +82,50 @@ module dataPath (
     //     .readData2(readData2)
     // );
 
-    // control control_1(
-    //     .instruction(opcode),
-    //     .branch(branch),
-    //     .memRead(memRead),
-    //     .memtoReg(memtoReg),
-    //     .aluOp(aluOp),
-    //     .memWrite(memWrite),
-    //     .aluSrc(aluSrc),
-    //     .regwrite(regwrite)
-    // );
+    controle control_1(
+        .instruction(opcode),
+        .branch(branch),
+        .memRead(memRead),
+        .memtoReg(memtoReg),
+        .aluOp(aluOp),
+        .memWrite(memWrite),
+        .aluSrc(aluSrc),
+        .regwrite(regwrite)
+    );
 
     // immGen immGen_1(
     //     .instruction(instruction),
     //     .extImmediate(extImmediate)
     // );
 
-    // aluControle aluControle_1(
-    //     .funct7(funct7),
-    //     .funct3(funct3),
-    //     .aluOp(aluOp),
-    //     .aluOut(aluOut)
-    // );
+    aluControle aluControle_1(
+        .funct7(funct7),
+        .funct3(funct3),
+        .aluOp(aluOp),
+        .aluOut(aluOut)
+    );
 
-    // muxreg muxreg_1(
-    //     .aluSrc(aluSrc),
-    //     .readData2(readData2),
-    //     .saidaImmGen(extImmediate),
-    //     .saida(saidaMuxreg)
-    // );
+    muxReg muxreg_1(
+        .aluSrc(aluSrc),
+        .readData2(readData2),
+        .saidaImmGen(extImmediate),
+        .saida(saidaMuxreg)
+    );
 
-    // muxmem muxmem_1(
-    //     .memtoReg(memtoReg),
-    //     .readData(readData),
-    //     .aluResult(aluResult),
-    //     .writeData(writeData)
-    // );
+    muxMem muxmem_1(
+        .memtoReg(memtoReg),
+        .readData(readData),
+        .aluResult(aluResult),
+        .writeData(writeData)
+    );
 
-    // alu alu_1(
-    //     .readData1(readData1),
-    //     .saidaMusReg(saidaMuxreg),
-    //     .aluControlOut(aluOut)
-    //     .zero(aluZero),
-    //     .aluResult(aluResult)
-    // );
+    alu alu_1(
+        .readData1(readData1),
+        .saidaMusReg(saidaMuxreg),
+        .aluControlOut(aluOut)
+        .zero(aluZero),
+        .aluResult(aluResult)
+    );
 
     // dataMemory dataMemory_1(
     //     .memWrite(memWrite),
