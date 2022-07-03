@@ -5,7 +5,7 @@ module pc(
     output reg [31:0] pcOut
 );
 
-    always @(*) begin
+    always @(posedge clk) begin
         if (reset) begin 
             pcOut <= 31'd0;
         end

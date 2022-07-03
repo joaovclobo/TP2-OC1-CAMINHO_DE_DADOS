@@ -1,12 +1,12 @@
-module muxBranch(
+module muxbranch(
     input wire [31:0] add4Out,
     input wire [31:0] addSumOut,
     input wire branch,
     input wire aluZero,
-    output reg [31:0] muxBranchOutp;
+    output reg [31:0] muxBranchOutp
 );
     wire resutado;
-    resutado = branch & aluZero;
+    assign resutado = branch & aluZero;
 
     always @* begin
         if (resutado == 0) begin
