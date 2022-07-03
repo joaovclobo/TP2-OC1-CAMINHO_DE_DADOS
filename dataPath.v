@@ -1,7 +1,7 @@
 `include "add4.v"
 `include "addSum.v"
-// `include "alu_control.v"
-// `include "alu.v"
+`include "alu_control.v"
+`include "alu.v"
 // `include "control.v"
 // `include "dataMemory.v"
 `include "immGen.v"
@@ -72,15 +72,15 @@ module dataPath (
         .rs2(rs2)
     );
 
-    // registers registers_1(
-    //     .regwrite(regwrite),
-    //     .readRegister1(rs1),
-    //     .readRegister2(rs2),
-    //     .writeRegister(rd),
-    //     .writeData(writeData),
-    //     .readData1(readData1),
-    //     .readData2(readData2)
-    // );
+    registers registers_1(
+        .regwrite(regwrite),
+        .readRegister1(rs1),
+        .readRegister2(rs2),
+        .writeRegister(rd),
+        .writeData(writeData),
+        .readData1(readData1),
+        .readData2(readData2)
+    );
 
     // control control_1(
     //     .instruction(opcode),
@@ -98,12 +98,12 @@ module dataPath (
         .extImmediate(extImmediate)
     );
 
-    // aluControle aluControle_1(
-    //     .funct7(funct7),
-    //     .funct3(funct3),
-    //     .aluOp(aluOp),
-    //     .aluOut(aluOut)
-    // );
+    aluControl aluControl_1(
+        .funct7(funct7),
+        .funct3(funct3),
+        .aluOp(aluOp),
+        .aluOut(aluOut)
+    );
 
     // muxreg muxreg_1(
     //     .aluSrc(aluSrc),
@@ -119,13 +119,13 @@ module dataPath (
     //     .writeData(writeData)
     // );
 
-    // alu alu_1(
-    //     .readData1(readData1),
-    //     .saidaMusReg(saidaMuxreg),
-    //     .aluControlOut(aluOut)
-    //     .zero(aluZero),
-    //     .aluResult(aluResult)
-    // );
+    alu alu_1(
+        .readData1(readData1),
+        .saidaMusReg(saidaMuxreg),
+        .aluControlOut(aluOut)
+        .zero(aluZero),
+        .aluResult(aluResult)
+    );
 
     // dataMemory dataMemory_1(
     //     .memWrite(memWrite),
