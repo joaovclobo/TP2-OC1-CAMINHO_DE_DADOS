@@ -1,10 +1,10 @@
 module aluControle(
-    input [6:0] funct7,
-    input [2:0] funct3,
-    input [1:0] aluOp,
+    input wire [6:0] funct7,
+    input wire [2:0] funct3,
+    input wire [1:0] aluOp,
     output reg [3:0]aluOut
 );
-    always @* begin
+    always @(aluOp | funct3 | funct7) begin
         case (aluOp)
             2'b00: begin
                 if (funct3 == 3'b010) begin
@@ -12,11 +12,11 @@ module aluControle(
                 end
             end
             2'b01: begin
-                if(funct3 == 3'000) begin
+                if(funct3 == 3'b000) begin
                     aluOut = 4'b0110;
                 end
             end
-            2'10: begin
+            2'b10: begin
                 if (funct3 == 3'b000 && funct7 == 7'b0000000) begin
                     aluOut = 4'b0010;  // add
                 end
@@ -30,7 +30,6 @@ module aluControle(
                     aluOut = 4'b0001;  // or
                 end
             end
-            default: 
         endcase
     end
 endmodule
