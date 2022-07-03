@@ -2,7 +2,7 @@ module dataMemory (
     input wire memWrite,
     input wire [31:0] address,
     input wire [31:0] writeData,
-    output reg [31:0]readData,
+    output reg [31:0] readData,
     input wire memRead
 );
     reg [31:0] dataMemory[31:0];

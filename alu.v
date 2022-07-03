@@ -3,7 +3,7 @@ module alu (
     input wire [31:0] saidaMusReg,
     input wire [3:0] aluControlOut,
     output wire zero;
-    output wire [31:0] aluResut;
+    output wire [31:0] aluResult;
 
     assign zero <= 1'b0;
     always @(aluControle) begin

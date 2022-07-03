@@ -1,6 +1,6 @@
 module muxBranch(
-    input wire [31:0] add4,
-    input wire [31:0] addSum,
+    input wire [31:0] add4Out,
+    input wire [31:0] addSumOut,
     input wire branch,
     input wire aluZero,
     output reg [31:0] muxBranchOutp;
@@ -10,10 +10,10 @@ module muxBranch(
 
     always @* begin
         if (resutado == 0) begin
-            muxBranchOutp = add4;
+            muxBranchOutp = add4Out;
         end
         if (resutado == 1) begin
-            muxBranchOutp = addSum;
+            muxBranchOutp = addSumOut;
         end
     end
 endmodule

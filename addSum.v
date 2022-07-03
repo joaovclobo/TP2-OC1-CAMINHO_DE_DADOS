@@ -1,9 +1,9 @@
 module addSum(
-    input wire [31:0] pcIn,
+    input wire [31:0] pcOut,
     input wire [31:0] immediate,
-    output reg [31:0] addSum
+    output reg [31:0] addSumOut
 );
     always @* begin
-        addSum <= pcIn + immediate;
+        addSumOut <= pcOut + immediate;
     end
 endmodule
