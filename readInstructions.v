@@ -10,8 +10,8 @@ module readInstructions(
     end
 
     assign instruction = instructionMem[memAddress / 4];
-	always @* begin
-		$display("Instrucao %b",instruction);
-	end
+	// always @* begin
+	// 	$display("Instrucao %b",instruction);
+	// end
 
 endmodule

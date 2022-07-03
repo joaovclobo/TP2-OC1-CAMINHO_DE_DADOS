@@ -3,7 +3,7 @@
 `include "aluControl.v"
 `include "alu.v"
 // `include "control.v"
-// `include "dataMemory.v"
+`include "dataMemory.v"
 `include "immGen.v"
 `include "instructionDivision.v"
 `include "muxbranch.v"
@@ -129,13 +129,15 @@ module dataPath (
         .aluResult(aluResult)
     );
 
-    // dataMemory dataMemory_1(
-    //     .memWrite(memWrite),
-    //     .address(aluResult),
-    //     .writeData(readData2),
-    //     .readData(readData),
-    //     .memRead(memRead)
-    // );
+    dataMemory dataMemory_1(
+        .clk(clk),
+        .reset(reset),
+        .memWrite(memWrite),
+        .address(aluResult),
+        .writeData(readData2),
+        .readData(readData),
+        .memRead(memRead)
+    );
 
 
 
