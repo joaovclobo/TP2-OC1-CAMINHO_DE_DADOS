@@ -1,6 +1,6 @@
 `include "add4.v"
 `include "addSum.v"
-`include "alu_control.v"
+`include "aluControl.v"
 `include "alu.v"
 // `include "control.v"
 // `include "dataMemory.v"
@@ -11,7 +11,7 @@
 // `include "muxreg.v"
 `include "pc.v"
 `include "readInstructions.v"
-// `include "registers.v"
+`include "registers.v"
 
 module dataPath (
     input wire reset,
@@ -25,7 +25,7 @@ module dataPath (
     wire [3:0] aluControlOut;
     wire [2:0] funct3;
     wire [1:0] aluOp;
-    wire branch, memRead, memtoReg, memWrite, aluSrc, regwrite, aluZero;
+    wire branch, memRead, memtoReg, memWrite, aluSrc, regWrite, aluZero;
     
     add4 add4_1(
         .clk(clk),
@@ -73,7 +73,9 @@ module dataPath (
     );
 
     registers registers_1(
-        .regwrite(regwrite),
+        .clk(clk),
+        .reset(reset),
+        .regWrite(regWrite),
         .readRegister1(rs1),
         .readRegister2(rs2),
         .writeRegister(rd),
@@ -90,7 +92,7 @@ module dataPath (
     //     .aluOp(aluOp),
     //     .memWrite(memWrite),
     //     .aluSrc(aluSrc),
-    //     .regwrite(regwrite)
+    //     .regWrite(regWrite)
     // );
 
     immGen immGen_1(
@@ -102,7 +104,7 @@ module dataPath (
         .funct7(funct7),
         .funct3(funct3),
         .aluOp(aluOp),
-        .aluOut(aluOut)
+        .aluControlOut(aluControlOut)
     );
 
     // muxreg muxreg_1(
@@ -122,7 +124,7 @@ module dataPath (
     alu alu_1(
         .readData1(readData1),
         .saidaMusReg(saidaMuxreg),
-        .aluControlOut(aluOut)
+        .aluControlOut(aluControlOut),
         .zero(aluZero),
         .aluResult(aluResult)
     );

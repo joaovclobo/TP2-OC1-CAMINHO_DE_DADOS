@@ -3,14 +3,13 @@ module registers (
     input reset, 
     input wire regWrite,
     input wire [4:0] readRegister1,
-    input wire [4:0] readRegister1,
+    input wire [4:0] readRegister2,
     input wire [4:0] writeRegister,
     input wire [31:0] writeData,
     output reg [31:0] readData1,
-    output reg [31:0] readData2,
+    output reg [31:0] readData2
 );
     reg [31:0] registradores [31:0];
-    integer i;
     
     always @(*) begin
         if (reset) begin // vai iniciar todos os 32 registradores com um valor
@@ -46,6 +45,9 @@ module registers (
             registradores[29] <= 32'd29;
             registradores[30] <= 32'd30;
             registradores[31] <= 32'd32;
+            
+            // $display("Reg 28: %b | Reg 13: %d", registradores[28], registradores[13]);
+
         end
         else begin
             if(regWrite == 1'b1) begin
@@ -53,8 +55,8 @@ module registers (
             end
 
             else begin
-                assign readData1 = registradores[readRegister1];
-                assign readData2 = registradores[readRegister1];
+                readData1 = registradores[readRegister1];
+                readData2 = registradores[readRegister2];
             end
         end
     end
