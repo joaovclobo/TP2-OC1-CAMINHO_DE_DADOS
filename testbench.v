@@ -13,19 +13,20 @@ wire [31:0] out_saida;
 // addSum uut3 (.pcIn(inp_teste), .immediate(imm), .addSum(out_saida));
 // readInstructions uut(.memAddress(inp_teste), .instruction(out_saida)); 
 // immGen uut (.instruction(inp_teste), .extImmediate(out_saida));
-dataPath uut(.reset(reset), .clk(clk), .pcOut(inp_teste), .instruction(out_saida));
+dataPath uut(.reset(reset), .clk(clk));
 
-always #5 clk = !clk;
+always #25 clk = !clk;
 
 initial begin
         $dumpfile("testebench.vcd");
         $dumpvars(0, testebench);
-        $monitor("PC: %b - Instrucao: %b", inp_teste, out_saida);
+        // $monitor("PC: %b - Instrucao: %b", inp_teste, out_saida);
         // $monitor("Clock: %b ", clk);
 
         #0 clk = 1'b1;
-        #0 reset = 1'b0;
-        #10 reset = 1'b1;
+        #0 reset = 1'b1;
+        #100 reset = 1'b0;
+        // #10 reset = 1'b0;
 
         // $display("Entrada %b - Saida %b", inp_teste, out_saida);
         // #20 inp_teste = 32'd4;
@@ -35,6 +36,8 @@ initial begin
         // #20 inp_teste = 32'd20;
 
         #1000 $stop;
-        #0 $finish;
+    end
+    initial begin
+        #2000 $finish;
     end
 endmodule

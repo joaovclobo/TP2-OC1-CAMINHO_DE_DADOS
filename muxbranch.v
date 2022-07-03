@@ -6,7 +6,8 @@ module muxbranch(
     output reg [31:0] muxBranchOutp
 );
     wire resutado;
-    assign resutado = branch & aluZero;
+    // assign resutado = branch & aluZero;
+    assign resutado = 1'b0;
 
     always @* begin
         if (resutado == 0) begin
