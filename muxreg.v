@@ -4,6 +4,7 @@ module muxReg(
     input wire [31:0] saidaImmGen;
     output reg [31:0] saida
 );
+
     always @* begin
         if(aluSrc == 0) begin
             saida = readData2;

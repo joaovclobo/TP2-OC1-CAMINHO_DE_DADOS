@@ -4,6 +4,7 @@ module muxMem (
     input wire [31:0] aluResult,
     output reg [31:0] writeData
 ); 
+
     always @* begin
         if(memtoReg == 1) begin
             writeData = readData;

@@ -4,7 +4,7 @@
 // `include "alu.v"
 // `include "control.v"
 // `include "dataMemory.v"
-// `include "immGen.v"
+`include "immGen.v"
 `include "instructionDivision.v"
 `include "muxbranch.v"
 // `include "muxmem.v"
@@ -93,10 +93,10 @@ module dataPath (
     //     .regwrite(regwrite)
     // );
 
-    // immGen immGen_1(
-    //     .instruction(instruction),
-    //     .extImmediate(extImmediate)
-    // );
+    immGen immGen_1(
+        .instruction(instruction),
+        .extImmediate(extImmediate)
+    );
 
     // aluControle aluControle_1(
     //     .funct7(funct7),
