@@ -11,9 +11,10 @@ wire [31:0] out_saida;
 // add4 uut2 (.pcIn(inp_teste), .add4(out_saida));
 // addSum uut3 (.pcIn(inp_teste), .immediate(imm), .addSum(out_saida));
 // readInstructions uut(.memAddress(inp_teste), .instruction(out_saida)); 
-immGen uut (.instruction(inp_teste), .extImmediate(out_saida));
+// immGen uut (.instruction(inp_teste), .extImmediate(out_saida));
+dataPath uut(.reset(reset), .clk(clk));
 
-always #20 clk = !clk;
+always #1500 clk = !clk;
 
 initial begin
         $dumpfile("testebench.vcd");

@@ -13,7 +13,7 @@
 `include "readInstructions.v"
 `include "registers.v"
 
-module dataPaty (
+module dataPath (
     input wire reset,
     input wire clock
 );

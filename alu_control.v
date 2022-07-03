@@ -1,8 +1,9 @@
 module aluControle(
-    input [6:0] funct7;
-    input [2:0] funct3;
-    input [1:0] aluOp;
-    output reg [3:0]aluOut;
+    input [6:0] funct7,
+    input [2:0] funct3,
+    input [1:0] aluOp,
+    output reg [3:0]aluOut
+);
     always @* begin
         case (aluOp)
             2'b00: begin
@@ -32,5 +33,4 @@ module aluControle(
             default: 
         endcase
     end
-);
 endmodule
