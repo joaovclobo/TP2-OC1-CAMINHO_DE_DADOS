@@ -1,17 +1,17 @@
 `include "add4.v"
 `include "addSum.v"
-`include "alu_control.v"
+`include "aluControl.v"
 `include "alu.v"
-`include "control.v"
-// `include "dataMemory.v"
-// `include "immGen.v"
+// `include "control.v"
+`include "dataMemory.v"
+`include "immGen.v"
 `include "instructionDivision.v"
 `include "muxbranch.v"
 `include "muxmem.v"
 `include "muxreg.v"
 `include "pc.v"
 `include "readInstructions.v"
-// `include "registers.v"
+`include "registers.v"
 
 module dataPath (
     input wire reset,
@@ -25,7 +25,7 @@ module dataPath (
     wire [3:0] aluControlOut;
     wire [2:0] funct3;
     wire [1:0] aluOp;
-    wire branch, memRead, memtoReg, memWrite, aluSrc, regwrite, aluZero;
+    wire branch, memRead, memtoReg, memWrite, aluSrc, regWrite, aluZero;
     
     add4 add4_1(
         .clk(clk),
@@ -72,15 +72,17 @@ module dataPath (
         .rs2(rs2)
     );
 
-    // registers registers_1(
-    //     .regwrite(regwrite),
-    //     .readRegister1(rs1),
-    //     .readRegister2(rs2),
-    //     .writeRegister(rd),
-    //     .writeData(writeData),
-    //     .readData1(readData1),
-    //     .readData2(readData2)
-    // );
+    registers registers_1(
+        .clk(clk),
+        .reset(reset),
+        .regWrite(regWrite),
+        .readRegister1(rs1),
+        .readRegister2(rs2),
+        .writeRegister(rd),
+        .writeData(writeData),
+        .readData1(readData1),
+        .readData2(readData2)
+    );
 
     controle control_1(
         .instruction(opcode),
@@ -93,16 +95,16 @@ module dataPath (
         .regwrite(regwrite)
     );
 
-    // immGen immGen_1(
-    //     .instruction(instruction),
-    //     .extImmediate(extImmediate)
-    // );
+    immGen immGen_1(
+        .instruction(instruction),
+        .extImmediate(extImmediate)
+    );
 
-    aluControle aluControle_1(
+    aluControl aluControl_1(
         .funct7(funct7),
         .funct3(funct3),
         .aluOp(aluOp),
-        .aluOut(aluOut)
+        .aluControlOut(aluControlOut)
     );
 
     muxReg muxreg_1(
@@ -127,13 +129,15 @@ module dataPath (
         .aluResult(aluResult)
     );
 
-    // dataMemory dataMemory_1(
-    //     .memWrite(memWrite),
-    //     .address(aluResult),
-    //     .writeData(readData2),
-    //     .readData(readData),
-    //     .memRead(memRead)
-    // );
+    dataMemory dataMemory_1(
+        .clk(clk),
+        .reset(reset),
+        .memWrite(memWrite),
+        .address(aluResult),
+        .writeData(readData2),
+        .readData(readData),
+        .memRead(memRead)
+    );
 
 
 
