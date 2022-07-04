@@ -2,7 +2,7 @@
 `include "addSum.v"
 `include "aluControl.v"
 `include "alu.v"
-// `include "control.v"
+`include "control.v"
 `include "dataMemory.v"
 `include "immGen.v"
 `include "instructionDivision.v"
@@ -92,7 +92,7 @@ module dataPath (
         .aluOp(aluOp),
         .memWrite(memWrite),
         .aluSrc(aluSrc),
-        .regwrite(regwrite)
+        .regWrite(regWrite)
     );
 
     immGen immGen_1(
@@ -124,7 +124,7 @@ module dataPath (
     alu alu_1(
         .readData1(readData1),
         .saidaMusReg(saidaMuxreg),
-        .aluControlOut(aluOut)
+        .aluControlOut(aluControlOut),
         .zero(aluZero),
         .aluResult(aluResult)
     );

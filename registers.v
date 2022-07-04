@@ -10,10 +10,11 @@ module registers (
     output reg [31:0] readData2
 );
     reg [31:0] registradores [31:0];
+    integer i;
     
     always @(*) begin
-        if (reset) begin // vai iniciar todos os 32 registradores com um valor
-            registradores[0] <= 32'b0; // O registrador 0 pode receber somente o zero
+        if (reset) begin
+            registradores[0] <= 32'b0;
             registradores[1] <= 32'd1;
             registradores[2] <= 32'd2;
             registradores[3] <= 32'd3;
@@ -46,8 +47,6 @@ module registers (
             registradores[30] <= 32'd30;
             registradores[31] <= 32'd32;
             
-            // $display("Reg 28: %b | Reg 13: %d", registradores[28], registradores[13]);
-
         end
         else begin
             if(regWrite == 1'b1) begin
@@ -59,5 +58,7 @@ module registers (
                 readData2 = registradores[readRegister2];
             end
         end
+        $display("\n------------------------------ Registers Sate ------------------------------\n");
+        for (i = 0; i < 32; i++) $display("Regs: %d | Value: %b", i, registradores[i]);
     end
 endmodule

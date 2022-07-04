@@ -2,7 +2,7 @@ module alu (
     input wire [31:0] readData1,
     input wire [31:0] saidaMusReg,
     input wire [3:0] aluControlOut,
-    output zero,
+    output wire zero,
     output reg [31:0] aluResult
 );
     assign zero = 1'b0;

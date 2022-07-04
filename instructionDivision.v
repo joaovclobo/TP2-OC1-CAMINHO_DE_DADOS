@@ -15,8 +15,4 @@ module instructionDivision(
     assign rs1 = instruction[19:15];
     assign rs2 = instruction[24:20];
 
-    // always @* begin
-	// 	$display("opcode %b | f3: %b | f7: %b | rd: %b, | rs1: %b, | rs2: %b", opcode, funct3, funct7, rd, rs1, rs2);
-	// end
-    
 endmodule

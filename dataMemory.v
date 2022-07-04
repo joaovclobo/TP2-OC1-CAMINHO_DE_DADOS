@@ -8,6 +8,7 @@ module dataMemory (
     input wire memRead
 );
     reg [31:0] dataMemory[31:0];
+    integer i;
 
     always @(*) begin
         if(reset) begin
@@ -45,8 +46,6 @@ module dataMemory (
             dataMemory[30] <= 32'd0;
             dataMemory[31] <= 32'd0;
 
-            $display("DataM 28: %b | DataM 13: %d", dataMemory[28], dataMemory[13]);
-
         end
         else begin
             if(memWrite) begin
@@ -56,5 +55,7 @@ module dataMemory (
                 readData <= dataMemory[address];
             end
         end
+        $display("\n------------------------------ Data Mememory Sate ------------------------------\n");
+        for (i = 0; i < 32; i++) $display("DataMem: %d | Value: %b", i, dataMemory[i]);
     end
 endmodule
