@@ -4,14 +4,13 @@ module pc(
     input wire [31:0] pcIn,
     output reg [31:0] pcOut
 );
-
     always @(posedge clk) begin
-        if (reset) begin 
-            pcOut <= 31'd0;
+        //$display("\n-------- PC:%d", pcIn / 4);
+        if (reset) begin
+            pcOut = 31'd0;
         end
         else begin
-            pcOut <= pcIn;
+            pcOut = pcIn;
         end
-        // $display("PCIn: %b, PCOut: %b", pcIn, pcOut);
     end
 endmodule

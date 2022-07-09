@@ -1,4 +1,3 @@
-
 `include "add4.v"
 `include "addSum.v"
 `include "aluControl.v"
@@ -14,10 +13,13 @@
 `include "readInstructions.v"
 `include "registers.v"
 
-module dataPath(
+module main(
     input wire reset,
     input wire clk
 );
+   // wire [31:0] pcIn;
+    //wire [31:0] pcOut;
+    //wire [31:0] instruction;
     wire [31:0] instruction, writeData, readData1, readData2, saidaMuxreg, readData;
     wire [31:0] aluResult, add4Out, addSumOut, pcIn, pcOut, extImmediate;
     wire [6:0] opcode, funct7;

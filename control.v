@@ -1,4 +1,5 @@
 module controle (
+    input wire clk,
     input wire [6:0]instruction,
     output reg branch,
     output reg memRead,
@@ -8,10 +9,9 @@ module controle (
     output reg aluSrc,
     output reg regWrite
     );
-
-    always @(instruction) begin
+    always @(posedge clk) begin
         case (instruction)
-             7'b0110011: begin // Tipo-R
+            7'b0110011: begin // Tipo-R
                 branch = 0;
                 memRead = 0;
                 memtoReg = 0;
@@ -38,7 +38,7 @@ module controle (
                 regWrite = 0;
                 aluOp = 2'b00; // lw e sw
             end
-            7'b1100111: begin // BRANCH
+            7'b1100011: begin // BRANCH
                 branch = 1;
                 memRead = 0;
                 memtoReg = 0;

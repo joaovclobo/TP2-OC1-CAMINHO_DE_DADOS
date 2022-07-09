@@ -1,5 +1,5 @@
 module registers (
-    input clk,
+    input wire clk,
     input reset, 
     input wire regWrite,
     input wire [4:0] readRegister1,
@@ -11,10 +11,9 @@ module registers (
 );
     reg [31:0] registradores [31:0];
     integer i;
-    
-    always @(*) begin
-        if (reset) begin
-            registradores[0] <= 32'b0;
+    always @(posedge clk) begin
+        if (reset) begin // vai iniciar todos os 32 registradores com um valor
+            registradores[0] <= 32'd0; // O registrador 0 pode receber somente o zero
             registradores[1] <= 32'd1;
             registradores[2] <= 32'd2;
             registradores[3] <= 32'd3;
@@ -45,20 +44,14 @@ module registers (
             registradores[28] <= 32'd28;
             registradores[29] <= 32'd29;
             registradores[30] <= 32'd30;
-            registradores[31] <= 32'd32;
-            
+            registradores[31] <= 32'd31;
         end
         else begin
-            if(regWrite == 1'b1) begin
+            readData1 = registradores[readRegister1];
+            readData2 = registradores[readRegister2];
+            if(regWrite == 1'b1 && writeRegister != 0 ) begin
                 registradores[writeRegister] = writeData;
             end
-
-            else begin
-                readData1 = registradores[readRegister1];
-                readData2 = registradores[readRegister2];
-            end
         end
-        $display("\n------------------------------ Registers Sate ------------------------------\n");
-        for (i = 0; i < 32; i++) $display("Regs: %d | Value: %b", i, registradores[i]);
     end
 endmodule

@@ -1,15 +1,17 @@
 module add4(
-    input clk,
-    input reset,
+    input wire clk,
+    input wire reset,
     input wire [31:0] pcOut,
     output reg [31:0] add4Out
 );
-    always @(*) begin
+
+    always @(posedge clk) begin
+        //$display("----------------------------------------------------------------------ADD4");
         if (reset) begin
-            add4Out <= 32'b0;
+            add4Out = 32'b0;
         end
         else begin
-            add4Out <= pcOut + 32'd4;    
+            add4Out = pcOut + 32'd4;    
         end
     end
 endmodule
