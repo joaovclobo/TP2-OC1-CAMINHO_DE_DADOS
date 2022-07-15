@@ -5,7 +5,6 @@ module pc(
     output reg [31:0] pcOut
 );
     always @(posedge clk) begin
-        //$display("\n-------- PC:%d", pcIn / 4);
         if (reset) begin
             pcOut = 31'd0;
         end

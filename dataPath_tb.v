@@ -13,12 +13,15 @@ module dataPath_tb();
         for (i = 0;i < 32 ; i++) begin
             $display("Register [%d]:        %d", i, dataPath_tb.registers_1.registradores[i]);
         end
+        if (dataPath_tb.readInstructions_1.instruction == 0) begin
+            $display("-----------------------------------------FIM DE PROGRAMA------------------------------");
+            $finish;
+        end
         $display("\n\n");
     end
     initial begin
         $dumpfile("dataPath_tb.vcd");
         $dumpvars(0, dataPath_tb);
-        //$monitor("reset: %b clk: %b -> clk: %b",reset, clk, clk);
         clk = 0;
         reset = 1;
         #1 clk = !clk;

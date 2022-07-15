@@ -1,12 +1,32 @@
-add x2, x0, x1
-lw x3, 0(x20)
-add x4, x3, x21
-sub x5, x30, x15
-and x6, x22, x27
-or x7, x6, x15
+addi x2, x0, 7
+sw x2, 4(x0)
+lw x1, 4(x0)
+add x2, x1, x0
+add x1, x1, x2
+add x1, x1, x2
+sub x1, x1, x2
+sub x1, x1, x2
 beq x1, x2, desvia
-add x8, x30, x30
-sub x9, x31, x31
-desvia:
-add x10, x23, x17
-sw x10, 0(x16)       
+add x1, x1, x1
+sw x1, 0(x0)
+desvia: and x1, x1, x2
+        or x1, x1, x0
+        sw x1, 0(x0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

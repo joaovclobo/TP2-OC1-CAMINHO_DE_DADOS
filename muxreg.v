@@ -10,7 +10,7 @@ module muxReg(
             saida = readData2;
         end
         if (aluSrc == 1) begin
-            saida = saidaImmGen / 4;
+            saida = saidaImmGen ;
         end
     end 
 endmodule

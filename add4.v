@@ -6,7 +6,6 @@ module add4(
 );
 
     always @(posedge clk) begin
-        //$display("----------------------------------------------------------------------ADD4");
         if (reset) begin
             add4Out = 32'b0;
         end
